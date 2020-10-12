@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class HUDHandler : MonoBehaviour
 {
-	public Text goldText;
+	public GameObject characterPanel;
+	public GameObject inventoryPanel;
 	public GameObject messagePanel;
+
+	public void toggleInventoryPanel() {
+		inventoryPanel.SetActive(!inventoryPanel.active);
+	}
+
+	public void toggleCharacterPanel() {
+		characterPanel.SetActive(!characterPanel.active);
+	}
 
 	public void openMessagePanel(string text) { 
 		messagePanel.SetActive(true);
@@ -14,9 +23,5 @@ public class HUDHandler : MonoBehaviour
 
 	public void closeMessagePanel() {
 		messagePanel.SetActive(false);
-	}
-
-	public void updateGoldText(string amount) {
-		goldText.text = amount;
 	}
 }

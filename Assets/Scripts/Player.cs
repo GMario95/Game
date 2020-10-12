@@ -6,17 +6,23 @@ using TMPro;
 public class Player : MonoBehaviour {
 	
 	public List<Item> inventory = new List<Item>(12);
-
-	private int gold = 0;
+	
 	private GameObject itemToPickup;
 
 	public HUDHandler hudHandler;
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.F) && itemToPickup != null) {
-			addGold(1);
 			hudHandler.closeMessagePanel();
 			itemToPickup.GetComponent<ItemHandler>().onPickup();
+		}
+
+		if (Input.GetKeyDown(KeyCode.I)) {
+			hudHandler.toggleInventoryPanel();
+		}
+
+		if (Input.GetKeyDown(KeyCode.C)) {
+			hudHandler.toggleCharacterPanel();
 		}
 	}
 
@@ -32,10 +38,5 @@ public class Player : MonoBehaviour {
 			itemToPickup = null;
 			hudHandler.closeMessagePanel();
 		}
-	}
-
-	private void addGold(int amount) {
-		gold += amount;
-		hudHandler.updateGoldText("Gold: " + gold.ToString());
 	}
 }
